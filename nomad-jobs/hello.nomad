@@ -5,7 +5,7 @@ job "hello" {
   group "example" {
     network {
       port "http" {
-        static = 8080   # <-- important, host port will be 8080
+        static = 8080
       }
     }
 
