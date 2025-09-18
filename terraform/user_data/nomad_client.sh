@@ -1,6 +1,6 @@
 client {
   enabled = true
-  servers = ["10.0.1.57"]  # replace with your Nomad server private IP
+  servers = [""] # Private IP
 }
 
 # Enable Docker driver
