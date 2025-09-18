@@ -1,0 +1,33 @@
+name: Deploy Nomad Job
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install Nomad CLI
+        run: |
+          curl -fsSL https://releases.hashicorp.com/nomad/1.6.4/nomad_1.6.4_linux_amd64.zip -o nomad.zip
+          unzip nomad.zip
+          sudo mv nomad /usr/local/bin/
+
+      - name: Deploy Nomad job
+        env:
+          BASTION_IP: ${{ secrets.BASTION_IP }}
+          NOMAD_SERVER_PRIVATE_IP: ${{ secrets.NOMAD_SERVER_PRIVATE_IP }}
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/nomad-demo
+          chmod 600 ~/.ssh/nomad-demo
+          
+          ssh -o "StrictHostKeyChecking=no" -i ~/.ssh/nomad-demo \
+              -J ubuntu@$BASTION_IP ubuntu@$NOMAD_SERVER_PRIVATE_IP \
+              "nomad job run /home/ubuntu/nomad_jobs/hello-world.nomad"
