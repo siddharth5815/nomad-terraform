@@ -11,7 +11,6 @@ resource "aws_instance" "nomad_client" {
     Name = "nomad-client-${count.index + 1}"
   }
 
-  # Pass only server private IP (Terraform can evaluate this)
   user_data = templatefile("${path.module}/user_data/nomad_client.sh", {
     nomad_server_ip = aws_instance.nomad_server.private_ip
   })
