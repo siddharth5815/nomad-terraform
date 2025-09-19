@@ -240,3 +240,17 @@ cat /path/to/nomad-demo.pub
 * **Nomad nodes not joining** — check security groups for ports 4646/4647/4648 and confirm private IPs in `advertise` settings; check logs with `journalctl -u nomad`.
 
 ---
+## Credentials Required to Test the Deliverables
+
+- **AWS Credentials**:  
+  You will need valid AWS credentials configured locally. Make sure your environment is set up with:
+  ```bash
+  aws configure
+---
+## Attached Nomad UI and the sample application and Servers Outcomes
+
+<img width="1440" height="900" alt="Screenshot 2025-09-18 at 4 19 04 PM" src="https://github.com/user-attachments/assets/859c1236-17b6-44e3-9ce6-9beeba4fc6b8" />
+<img width="1440" height="900" alt="Screenshot 2025-09-18 at 9 08 43 PM" src="https://github.com/user-attachments/assets/925e1299-b469-4cd1-8b4f-7ccacb539f85" />
+<img width="1440" height="900" alt="Screenshot 2025-09-18 at 9 09 16 PM" src="https://github.com/user-attachments/assets/c5c10583-fe95-4aba-9f12-76118e000f84" />
+
+---
