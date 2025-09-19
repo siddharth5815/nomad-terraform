@@ -1,4 +1,3 @@
-# Create key pair from provided public key
 resource "aws_key_pair" "deployer" {
   key_name   = "nomad-demo-key"
   public_key = var.ssh_public_key
@@ -40,9 +39,8 @@ resource "aws_instance" "nomad_server" {
   vpc_security_group_ids      = [aws_security_group.nomad_server_sg.id]
   tags = { Name = "nomad-server" }
 
-  # Add this line to specify your SSH key
   key_name = "nomad-demo"
 
-  # IMPORTANT: use file() so Terraform doesn't need to interpolate instance attributes
+  # IMPORTANT: use file()
   user_data = file("${path.module}/user_data/nomad_server.sh")
 }
